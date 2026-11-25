@@ -253,7 +253,7 @@ Các file `.mp4` cục bộ trong thư mục `Video/` được loại trừ kh�
 
 ## Nhóm thực hiện và thời gian thực hiện
 
-- **Nhóm thực hiện**: Nhóm 18 — Khoa Điện – Điện tử, Trường Đại học Công nghệ Kỹ thuật TP. HCM (HCM-UTE)
+- **Nhóm thực hiện**: Nhóm 18 - Khoa Điện - Điện tử, Trường Đại học Công nghệ Kỹ thuật TP. HCM (HCM-UTE)
   - Nguyễn Ngọc Trường Phi
   - Hà Quang Huy
   - Võ Trung Nguyên ([`@NguyenVo-09`](https://github.com/NguyenVo-09))
