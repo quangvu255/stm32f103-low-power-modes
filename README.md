@@ -1,4 +1,4 @@
-# STM32F103C8T6 Low-Power Modes: Sleep, Stop và Standby
+[# STM32F103C8T6 Low-Power Modes: Sleep, Stop và Standby
 
 > Repository portfolio cá nhân tổng hợp mã nguồn firmware, cấu hình STM32CubeMX, tài liệu thiết kế, sơ đồ mạch và kết quả đo kiểm thực nghiệm 3 chế độ tiết kiệm năng lượng (**Sleep**, **Stop**, **Standby**) trên vi điều khiển **STM32F103C8T6 (Blue Pill)**. Dự án được phát triển từ đồ án học phần *Hệ thống nhúng (EMSY435664)* và được tổ chức lại phục vụ hồ sơ kỹ thuật (CV).
 
@@ -276,3 +276,4 @@ Repository này là bản tổng hợp phục vụ hồ sơ kỹ thuật cá nh�
 
 - Dự án được thực hiện trong khuôn khổ đồ án học phần Hệ thống nhúng (**Nhóm 18**: Nguyễn Ngọc Trường Phi, Hà Quang Huy, Võ Trung Nguyên, Vũ Minh Quang).
 - Tham khảo repository nguồn của nhóm: [NguyenVo-09/stm32-low-power-modes](https://github.com/NguyenVo-09/stm32-low-power-modes).
+](https://github.com/quangvu255)
