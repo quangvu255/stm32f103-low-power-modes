@@ -1,6 +1,6 @@
-[# STM32F103C8T6 Low-Power Modes: Sleep, Stop và Standby
+# STM32F103C8T6 Low-Power Modes: Sleep, Stop và Standby
 
-> Repository portfolio cá nhân tổng hợp mã nguồn firmware, cấu hình STM32CubeMX, tài liệu thiết kế, sơ đồ mạch và kết quả đo kiểm thực nghiệm 3 chế độ tiết kiệm năng lượng (**Sleep**, **Stop**, **Standby**) trên vi điều khiển **STM32F103C8T6 (Blue Pill)**. Dự án được phát triển từ đồ án học phần *Hệ thống nhúng (EMSY435664)* và được tổ chức lại phục vụ hồ sơ kỹ thuật (CV).
+> Repository tổng hợp mã nguồn firmware, cấu hình STM32CubeMX, tài liệu thiết kế, sơ đồ mạch và kết quả đo kiểm thực nghiệm 3 chế độ tiết kiệm năng lượng (**Sleep**, **Stop**, **Standby**) trên vi điều khiển **STM32F103C8T6 (Blue Pill)**.
 
 ---
 
@@ -15,8 +15,7 @@
 7. [Hướng dẫn mở project, build, nạp firmware và kiểm thử](#hướng-dẫn-mở-project-build-nạp-firmware-và-kiểm-thử)
 8. [Kết quả đo dòng tiêu thụ và phân tích thực nghiệm](#kết-quả-đo-dòng-tiêu-thụ-và-phân-tích-thực-nghiệm)
 9. [Video demo và chạy thực tế](#video-demo-và-chạy-thực-tế)
-10. [Lưu ý kỹ thuật và hạn chế đã ghi nhận](#lưu-ý-kỹ-thuật-và-hạn-chế-đã-ghi-nhận)
-11. [Đóng góp cá nhân và thông tin học phần](#đóng-góp-cá-nhân-và-thông-tin-học-phần)
+10. [Nhóm thực hiện và thời gian thực hiện](#nhóm-thực-hiện-và-thời-gian-thực-hiện)
 
 ---
 
@@ -252,28 +251,11 @@ Các file `.mp4` cục bộ trong thư mục `Video/` được loại trừ kh�
 
 ---
 
-## Lưu ý kỹ thuật và hạn chế đã ghi nhận
+## Nhóm thực hiện và thời gian thực hiện
 
-- **Ánh xạ LED trong Standby `main.c` ngược với báo cáo**: File [`Standby_mode/Standby_Mode/Core/Src/main.c`](Standby_mode/Standby_Mode/Core/Src/main.c) gán `blink_led()` vào `PA4` và `HAL_TIM_PeriodElapsedCallback()` vào `PA3`, ngược với mô tả trong [`Standby_mode_report.pdf`](Standby_mode/docs/Standby_mode_report.pdf) (trang 27 ghi `PA3` cho `Blink_led()` và `PA4` cho `TIM1`). Cần đối chiếu đúng code trong `main.c` trước khi đấu LED.
-- **Lưu ý tên file trong thư mục `Standby_mode`**: Các file cấu hình CubeMX và project Keil được đặt tên là `stanby_mode.ioc` và `stanby_mode.uvprojx` (thiếu chữ `d`), đồng thời trong `MDK-ARM/` có cả hai file `stanby_mode.uvoptx` và `standby_mode.uvoptx`.
-- **Schematic Proteus dùng ký hiệu `STM32F103R6`**: Các file `*_Schematic.PDF` và `Images/hardware/sleep-schematic.png` vẽ ký hiệu IC là `STM32F103R6` (64 chân), trong khi bo mạch thực tế và cả 3 project firmware sử dụng **STM32F103C8T6** (48 chân LQFP48). Chỉ dùng schematic để tham khảo kết nối tên chân GPIO (`PA0`, `PA1`, `PA3`, `PA4`), **không dùng số chân vật lý** trên schematic để đấu dây cho Blue Pill. Ngoài ra, giá trị điện trở ghi trên các file `*_Schematic.PDF` (`R1, R2 = 220 Ω` ở nút nhấn và `R3, R4 = 10 kΩ` ở LED) bị đảo ngược so với `Hình 3` trong [`sleep_mode_report.pdf`](Sleep_mode/docs/sleep_mode_report.pdf) (`10 kΩ` kéo xuống ở nút nhấn, `220 Ω` hạn dòng LED).
-- **Khác biệt phiên bản Arm Compiler**: Project Sleep khai báo **Arm Compiler 5**, trong khi Stop và Standby khai báo **Arm Compiler 6.24**. Nếu máy chỉ cài một phiên bản compiler, hãy chuyển lại mục *Target → Arm Compiler* trong *Options for Target* của Keil µVision trước khi build.
-- **Một số lỗi đánh máy nhỏ trong báo cáo PDF gốc**: Mục 4.3 của `Stop_mode_report.pdf` (trang 28) ghi nhầm `0.2mA` trong khi ảnh đo thực tế (`Hình 12`) và phần kết luận (trang 29) ghi nhận `2.02 mA` / `~2 mA`; mục 4.2 của `Standby_mode_report.pdf` (trang 28) ghi `~1.67 mA` trong khi ảnh đồng hồ (`Hình 15` / `standby-mode.jpg`) hiển thị `01.61 mA`.
-
----
-
-## Đóng góp cá nhân và thông tin học phần
-
-Repository này là bản tổng hợp phục vụ hồ sơ kỹ thuật cá nhân (CV) của **Vũ Minh Quang** ([`@quangvu255`](https://github.com/quangvu255)), được phát triển từ đồ án cuối kỳ môn **Hệ thống nhúng (`EMSY435664`)** tại Trường Đại học Công nghệ Kỹ thuật TP. HCM (HK1, năm học 2025–2026).
-
-### Vai trò và nội dung thực hiện
-
-- Cấu hình các project **STM32CubeMX** (`.ioc`) cho cả 3 chế độ `Sleep`, `Stop` và `Standby` trên vi điều khiển `STM32F103C8T6` (GPIO, EXTI, RCC HSI/HSE PLL 64 MHz, TIM1, SYS SWD).
-- Triển khai và kiểm thử firmware điều khiển luồng vào chế độ tiết kiệm năng lượng, ngắt đánh thức `EXTI` / `SYS_WKUP`, tạm dừng/khôi phục `SysTick`, cấu hình lại clock sau `Stop` và xử lý cờ trạng thái `PWR` trong `Standby`.
-- Thực nghiệm trên phần cứng Blue Pill kết hợp mạch breadboard, đo dòng tiêu thụ bằng đồng hồ vạn năng cho từng trạng thái và đối chiếu sai lệch do phần cứng bo mạch gây ra.
-
-### Ghi nhận dự án nhóm
-
-- Dự án được thực hiện trong khuôn khổ đồ án học phần Hệ thống nhúng (**Nhóm 18**: Nguyễn Ngọc Trường Phi, Hà Quang Huy, Võ Trung Nguyên, Vũ Minh Quang).
-- Tham khảo repository nguồn của nhóm: [NguyenVo-09/stm32-low-power-modes](https://github.com/NguyenVo-09/stm32-low-power-modes).
-](https://github.com/quangvu255)
+- **Nhóm thực hiện**: Nhóm 18 — Khoa Điện – Điện tử, Trường Đại học Công nghệ Kỹ thuật TP. HCM (HCM-UTE)
+  - Nguyễn Ngọc Trường Phi
+  - Hà Quang Huy
+  - Võ Trung Nguyên ([`@NguyenVo-09`](https://github.com/NguyenVo-09))
+  - Vũ Minh Quang ([`@quangvu255`](https://github.com/quangvu255))
+- **Thời gian thực hiện**: Học kỳ 1, năm học 2025–2026 (hoàn thành tháng 01/2026)
